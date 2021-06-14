@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    font-family: Dosis;
+  }
+body {
+    background-color: #f1f3f6;
+}
+
+/*# sourceMappingURL=styles.css.map*/
