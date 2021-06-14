@@ -1,0 +1,34 @@
+<jw-modal id="custom-modal-1">
+  <button *ngIf="Object.keys(cartItems).length === 0" class="close-btn"
+    (click)="closeModal('custom-modal-1');">Close</button>
+  <div class="no-item-container" *ngIf="Object.keys(cartItems).length === 0">
+    <div class="empty-cart">No Items in your cart</div>
+    <div>Your favourite items are just a click away</div>
+  </div>
+  <button class="btn-shopping " *ngIf="Object.keys(cartItems).length === 0">Start Shopping</button>
+  <ng-container *ngIf="Object.keys(cartItems).length > 0">
+    <div class="myCart">My Cart {{Object.keys(cartItems).length}}
+      <button class="close-btn-1" (click)="closeModal('custom-modal-1');">Close</button>
+    </div>
+    <div class="cart-items-container" *ngFor='let key of Object.keys(cartItems)'>
+      <img class="cart-item-img" src="assets/{{ cartItems[key]?.imageUrl }}">
+      <div class="cart-info-container">
+        <div class="cart-item-name">{{cartItems[key].name}}</div>
+        <div>
+          <button (click)="subtract(key)" class="plus-minus-icon cart-icon"> <i class="fa fa-minus"></i></button>
+          <span class="cart-count">{{cartItems[key].count}}</span>
+          <button (click)="add(key)" class="plus-minus-icon cart-icon"> <i class="fa fa-plus"></i></button>
+          <span class="cart-icon"> <i class="fa fa-times"></i></span>
+          <span>{{cartItems[key].price}}</span>
+          <span class="close-btn-1">Rs {{cartItems[key].count * cartItems[key].price}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="checkout-container">
+      <button class="checkout-btn">
+        <span>Proceed to Checkout</span>
+        <span class="cart-total">Rs {{total}}</span>
+      </button>
+    </div>
+  </ng-container>
+</jw-modal>

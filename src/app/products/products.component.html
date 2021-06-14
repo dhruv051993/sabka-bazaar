@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="filter">
+        <ng-container *ngFor="let category of categories">
+            <div class="category" 
+            [ngClass]="category.isActive == true ? 'activeCategory' : ''"
+            (click)="setActivatedProduct(category?.id)">{{category?.name}}</div>
+        </ng-container>
+    </div>
+    <div class="products">
+        <ng-container *ngFor="let product of filteredProducts">
+            <div class="product">
+                <div class="product-name">{{product.name}}</div>
+                <img class="product-image" src="assets/{{ product?.imageURL }}">
+                <div class="product-description">{{product.description}}</div>
+                <div class="product-price">
+                    <span>MRP Rs{{product?.price}}</span>
+                    <button (click)="setCartItems(product)" class="buy-btn">Buy Now</button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div id="snackbar">Item Added Successfully</div>
