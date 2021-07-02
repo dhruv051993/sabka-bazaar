@@ -9,7 +9,9 @@ import { catchError } from 'rxjs/operators';
 export class ProductsService {
   private serverUrl = 'http://localhost:5000';
   private userData = new BehaviorSubject<string>('');
-  cartItems = {};
+  private cartItems = new BehaviorSubject<any>({});
+  // cartItems = {};
+  cartData = this.cartItems.asObservable();
   userDetails = this.userData.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -75,5 +77,9 @@ export class ProductsService {
 
   setLoggedInUser(name) {
     this.userData.next(name);
+  }
+
+  setCartItem(item) {
+    this.cartItems.next(item);
   }
 }

@@ -1,14 +1,14 @@
 <app-carousel></app-carousel>
-<div class="home-container">
+<div class="home">
     <ng-container *ngFor="let category of categories">
-        <div class="category">
-            <div class="image-wrapper">
-                <img class="banner" src="assets/{{ category?.imageUrl }}">
-            </div>
-            <div class="name-container">
-                <span class="name category-name">{{category?.name}}</span>
-                <span class="name">{{category?.description}}</span>
-                <button (click)="redirect(category?.id)"class="explore-btn">Explore {{category?.name}}</button>
+        <div class="home__category">
+            <figure class="home__banner">
+                <img class="home__img" src="assets/{{ category?.imageUrl }}" alt="home image">
+            </figure>
+            <div class="home__content">
+                <span class="home__categoryName">{{category?.name}}</span>
+                <span class="home__categoryDescription">{{category?.description}}</span>
+                <button class="btn btn--explore" (click)="redirect(category?.id)">Explore {{category?.name}}</button>
             </div>
         </div>
     </ng-container>

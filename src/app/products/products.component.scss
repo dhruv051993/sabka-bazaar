@@ -1,0 +1,227 @@
+.products {
+    display: flex;
+    flex-direction: column;
+}
+
+.products__filter {
+    max-width: 15.625rem;
+    width: 25%;
+    background: var(--filter-bg-color);
+    margin-right: 1.25rem;
+    margin-top: 0.625rem;
+    display: none;
+}
+
+.products__category {
+    padding: 1rem;
+    border-bottom: 1px solid var(--category-border-color); 
+    font-size: 0.813rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.products__category--active {
+    background: var(--lightgray);
+}
+
+.products__dropdwn {
+    margin-top: 0.625rem;
+    background-color: var(--primary);
+    padding: 0.313rem;
+    color: var(--white);
+}
+
+.products__item {
+    display: block;
+}
+
+.card {
+    width: calc(100% - 1.25rem);
+    margin: 0.625rem;
+    text-align: center;
+    border-bottom: 1px dotted var(--black);;
+    padding-bottom: 0.625rem;
+}
+
+.card__name {
+    font-weight: 600;
+    height: 2.063rem;
+    margin-bottom: 0.625rem;
+}
+
+.card__item {
+    display: flex;
+    height: calc(100% - 2.063rem);
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.card__image {
+    width: 50%;
+    max-width: 15.625rem;
+    padding-right: 0.625rem;
+    padding-bottom: 0.625rem;
+    align-self: flex-start;
+}
+
+.card__content {
+    height: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card__description {
+    background: var( --card-desc-color);
+    text-align: left;
+    height: auto;
+    width: 100%;
+    margin-bottom: 0.625rem;
+}
+
+.btn--buy {
+    width: 100%;
+    background-color: var(--primary);
+    border: none;
+    color: var(--white);
+    padding: 0.313rem 0.438rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card__mrp {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    width: 100%;
+}
+
+.card__price--hidden {
+    display: none;
+}
+
+.card__mrp--hidden {
+    display: none;
+}
+
+
+#snackbar {
+    visibility: hidden;
+    min-width: 15.625rem;
+    margin-left: -7.813rem;
+    background-color: var(--secondary);
+    color: var(--white);
+    text-align: center;
+    border-radius: 0.125rem;
+    padding: 1rem;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 1.875rem;
+    font-size: 1.063rem;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 1.875rem; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 1.875rem; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {top: 1.875rem; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {top: 1.875rem; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }
+
+@media only screen and (min-width: 768px) {
+    .products {
+        flex-direction: row;
+    }
+
+    .products__filter {
+        display: block;
+    }
+
+    .products__item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 75%;
+        flex: 1;
+    }
+
+    .products__dropdwn {
+        display: none;
+    }
+
+    .card {
+        width: calc(50% - 1.25rem);
+    }
+
+    .card__mrp--hidden {
+        display: inline-block;
+    }
+
+    .btn--buy--hide {
+        display: none;
+    }
+
+    .card__content {
+        height: inherit;
+    }
+
+    .card__description {
+        height: 100%;
+    }
+}
+
+
+@media only screen and (min-width : 1024px) {
+    .card {
+        width: calc(25% - 1.25rem);
+    }
+
+    .card__image {
+        width: 100%;
+    }
+
+    .card__item {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .card__price {
+        display: none;
+    }
+
+    .card__content {
+        justify-content: initial;
+    } 
+
+    .card__price--hidden {
+        display: inline;
+        padding-right: 0.625rem;
+    }
+
+    .btn--buy {
+        width: fit-content;
+    }
+}
+

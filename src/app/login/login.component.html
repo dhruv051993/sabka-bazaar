@@ -1,33 +1,36 @@
-<div class="login-container">
-    <div class="sign-up ">
-        <h2>Login</h2>
+<div class="login">
+    <div class="login__signup">
+        <h2 class="login__heading">Login</h2>
         <div>Get access to your Orders,Wishlist and Recommendations</div>
     </div>
-    <div class="form-container">
+    <div class="login__form">
         <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-            <div class="form-group invalid-feedback" *ngIf="errorMsg">{{errorMsg}}</div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" formControlName="email"
-                    [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}" />
-                <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
-                    <div *ngIf="form.get('email').errors.required">Email Name is required</div>
-                    <div *ngIf="form.get('email').errors.email">Email must be a valid email Address</div>
+            <div class="login__invalid" *ngIf="errorMsg">{{errorMsg}}</div>
+            <div>
+                <label for="email">Email
+                    <span class="sr-only">is a required field</span>
+                </label>
+                <input type="text" class="login__formControl" name="email" formControlName="email" placeholder="Email" required/>
+                <div *ngIf="form.get('email').touched && form.get('email').invalid" class="login__invalid">
+                    <div role="alert" *ngIf="form.get('email').errors.required">Email Name is required</div>
+                    <div role="alert" *ngIf="form.get('email').errors.email">Email must be a valid email Address</div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" formControlName="password"
+            <div>
+                <label for="password">Password
+                    <span class="sr-only">is a required field</span>
+                </label>
+                <input type="password" class="login__formControl" name="password" formControlName="password" placeholder="password" required
                     [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}" />
-                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
-                    <div *ngIf="form.get('password').errors.required">Password is required</div>
-                    <div *ngIf="form.get('password').errors.minlength">Password must be a letaset 6
-                        charector</div>
+                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="login__invalid">
+                    <div role="alert" *ngIf="form.get('password').errors.required">Password is required</div>
+                    <div role="alert" *ngIf="form.get('password').errors.minlength">Password must be a letaset 6
+                        charactor</div>
                 </div>
 
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary login-btn" [disabled]="!form.valid">Login</button>
+            <div>
+                <button class="btn btn-login" [disabled]="!form.valid">Login</button>
             </div>
         </form>
     </div>

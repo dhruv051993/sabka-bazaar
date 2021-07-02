@@ -5,31 +5,38 @@ img {vertical-align: middle;}
 .slideshow-container {
   max-width: 1000px;
   position: relative;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: gray;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+  display: none;
 }
 
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
+@media (min-width: 768px) {
+  .prev, .next {
+    display: inline;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: gray;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
 
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
 }
 
 .text {
@@ -52,13 +59,20 @@ img {vertical-align: middle;}
 
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
+  height: 11px;
+  width: 11px;
   margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+}
+
+@media (min-width: 768px) {
+  .dot {
+    height: 15px;
+    width: 15px;
+  }
 }
 
 .active, .dot:hover {

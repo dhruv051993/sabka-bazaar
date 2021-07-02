@@ -11,8 +11,7 @@ jw-modal {
         overflow: auto;
 
         .jw-modal-body {
-            padding: 20px;
-            background: #fff;
+            background: var(--modal-bg-color);
             margin: 40px;
             overflow: scroll;
             height: 80%;

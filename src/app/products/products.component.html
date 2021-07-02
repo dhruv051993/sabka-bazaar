@@ -1,20 +1,40 @@
-<div class="container">
-    <div class="filter">
+<div class="products">
+    <div class="products__filter">
         <ng-container *ngFor="let category of categories">
-            <div class="category" 
-            [ngClass]="category.isActive == true ? 'activeCategory' : ''"
-            (click)="setActivatedProduct(category?.id)">{{category?.name}}</div>
+            <div class="products__category" [ngClass]="category.isActive == true ? 'products__category--active' : ''"
+                (click)="setActivatedProduct(category?.id)">{{category?.name}}</div>
         </ng-container>
     </div>
-    <div class="products">
+
+    <select (change)="setActivatedProduct($event.target.value)" class="products__dropdwn" name="categories"
+        [(ngModel)]="selectedCategory">
+        <option value="All">All</option>
+        <ng-container *ngFor="let category of categories">
+            <option [value]="category?.id">{{category?.name}}</option>
+        </ng-container>
+    </select>
+
+    <div class="products__item">
         <ng-container *ngFor="let product of filteredProducts">
-            <div class="product">
-                <div class="product-name">{{product.name}}</div>
-                <img class="product-image" src="assets/{{ product?.imageURL }}">
-                <div class="product-description">{{product.description}}</div>
-                <div class="product-price">
-                    <span>MRP Rs{{product?.price}}</span>
-                    <button (click)="setCartItems(product)" class="buy-btn">Buy Now</button>
+            <div class="card">
+                <div class="card__name">{{product.name}}</div>
+                <div class="card__item">
+                    <img class="card__image" src="assets/{{ product?.imageURL }}" alt="product image" loading="lazy">
+                    <div class="card__content">
+                        <div class="card__description">{{product.description}}</div>
+                        <button (click)="setCartItems(product)" class="btn btn--buy btn--buy--hide">
+                            <span>Buy Now</span>
+                            <span class="card__price">&nbsp;@ Rs{{product?.price}}</span>
+                        </button>
+                    </div>
+                    <div class="card__mrp card__mrp--hidden">
+                        <span class="card__price--hidden">MRP Rs{{product?.price}}</span>
+                        <button (click)="setCartItems(product)" class="btn btn--buy">
+                            <span>Buy Now</span>
+                            <span class="card__price">&nbsp;@ Rs{{product?.price}}</span>
+                        </button>
+                    </div>
+                    <span class="sr-only sr-only-focusable" href="#">Buy {{product.name}} @ Rs{{product?.price}}</span>
                 </div>
             </div>
         </ng-container>

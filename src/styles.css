@@ -1,9 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: Dosis;
   }
 
-body {
-    background-color: #f1f3f6;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+
+  .sr-only-focusable:active, .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
 }
+
+  :root {
+    --primary: #bf2957;
+    --secondary: #333333;
+    --shadow: #646464;
+    --white: #ffffff;
+    --black: #000000;
+    --lightgray: #d3d3d3;
+    --red: #ff0000;
+    --filter-bg-color: #eaeaea;
+    --category-border-color: #8e8e8e;
+    --form-control-focus: #86b7fe;
+    --form-control-text: #212529;
+    --form-control-border: #ced4da;
+    --form-invalid: #dc3545;
+    --sign-out-txt: #f9f9f9;
+    --hlink-active: #0E4DC3;
+    --modal-bg-color: #eeeeee;
+    --card-desc-color: #e6e2e2;
+   }

@@ -6,7 +6,7 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   form;
@@ -19,10 +19,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl('', [Validators.email]),
+      password: new FormControl('', [ Validators.minLength(6)])
     });
   }
 

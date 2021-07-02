@@ -5,18 +5,21 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
   cartItems = {};
-  total = 0;
+  totalCartPrice = 0;
+  totalCartItems = 0;
   Object = Object;
 
   constructor(private productsService: ProductsService, private modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.cartItems = this.productsService.cartItems;
-    this.calculateTotal();
+    this.productsService.cartData.subscribe((data) => {
+      this.cartItems = data;
+      this.calculateTotal();
+    });
   }
 
   closeModal(id: string) {
@@ -24,26 +27,29 @@ export class CartComponent implements OnInit {
   }
 
   add(key) {
-    this.productsService.cartItems[key].count += 1;
-    this.cartItems = this.productsService.cartItems;
+    this.cartItems[key].count += 1;
+    this.productsService.setCartItem(this.cartItems);
     this.calculateTotal();
   }
 
   subtract(key) {
-    this.productsService.cartItems[key].count -= 1;
-    if (this.productsService.cartItems[key].count === 0) {
-      delete this.productsService.cartItems[key];
+    this.cartItems[key].count -= 1;
+    if (this.cartItems[key].count === 0) {
+      delete this.cartItems[key];
     }
-    this.cartItems = this.productsService.cartItems;
+    this.productsService.setCartItem(this.cartItems);
     this.calculateTotal();
   }
 
   calculateTotal() {
-    let total = 0;
+    let totalCartPrice = 0;
+    let totalCartItems = 0;
     for (const key in this.cartItems) {
-      total += this.cartItems[key].count * this.cartItems[key].price;
+      totalCartItems += this.cartItems[key].count;
+      totalCartPrice += this.cartItems[key].count * this.cartItems[key].price;
     }
-    this.total = total;
+    this.totalCartPrice = totalCartPrice;
+    this.totalCartItems = totalCartItems;
   }
 
 

@@ -1,6 +1,6 @@
 <div *ngIf="banners" class="slideshow-container">
     <div class="mySlides fade" *ngFor="let banner of banners; let i = index">
-        <img src="assets/{{ banner?.bannerImageUrl }}" style="width:100%">
+        <img src="assets/{{ banner?.bannerImageUrl }}" alt="banner image" style="width:100%">
     </div>
     <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
     <a class="next" (click)="plusSlides(1)">&#10095;</a>

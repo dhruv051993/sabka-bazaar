@@ -1,33 +1,43 @@
 <jw-modal id="custom-modal-1">
-  <button *ngIf="Object.keys(cartItems).length === 0" class="close-btn"
-    (click)="closeModal('custom-modal-1');">Close</button>
-  <div class="no-item-container" *ngIf="Object.keys(cartItems).length === 0">
-    <div class="empty-cart">No Items in your cart</div>
-    <div>Your favourite items are just a click away</div>
+  <div class="cart__header">
+    <span class="cart__header-label">My Cart </span>
+    <span *ngIf="Object.keys(cartItems).length > 0">({{totalCartItems}} item)</span>
+    <span class="btn btn--close" (click)="closeModal('custom-modal-1');"><i class="fa fa-times"></i></span>
   </div>
-  <button class="btn-shopping " *ngIf="Object.keys(cartItems).length === 0">Start Shopping</button>
-  <ng-container *ngIf="Object.keys(cartItems).length > 0">
-    <div class="myCart">My Cart {{Object.keys(cartItems).length}}
-      <button class="close-btn-1" (click)="closeModal('custom-modal-1');">Close</button>
+  <ng-container *ngIf="Object.keys(cartItems).length === 0">
+    <div class="cart__empty">
+      <div class="cart__no-item">No Items in your cart</div>
+      <div>Your favourite items are just a click away</div>
     </div>
-    <div class="cart-items-container" *ngFor='let key of Object.keys(cartItems)'>
-      <img class="cart-item-img" src="assets/{{ cartItems[key]?.imageUrl }}">
-      <div class="cart-info-container">
-        <div class="cart-item-name">{{cartItems[key].name}}</div>
+    <button class="btn btn--shopping ">Start Shopping</button>
+  </ng-container>
+
+  <ng-container *ngIf="Object.keys(cartItems).length > 0">
+    <div class="cart__items" *ngFor='let key of Object.keys(cartItems)'>
+      <img class="cart__item-img" src="assets/{{ cartItems[key]?.imageUrl }} " alt="cart image">
+      <div class="cart__content">
+        <div class="cart__item-name">{{cartItems[key].name}}</div>
         <div>
-          <button (click)="subtract(key)" class="plus-minus-icon cart-icon"> <i class="fa fa-minus"></i></button>
-          <span class="cart-count">{{cartItems[key].count}}</span>
-          <button (click)="add(key)" class="plus-minus-icon cart-icon"> <i class="fa fa-plus"></i></button>
-          <span class="cart-icon"> <i class="fa fa-times"></i></span>
-          <span>{{cartItems[key].price}}</span>
-          <span class="close-btn-1">Rs {{cartItems[key].count * cartItems[key].price}}</span>
+          <button (click)="subtract(key)" class="cart__icon cart__icon--compute"> <i class="fa fa-minus"></i></button>
+          <span class="cart__item-count">{{cartItems[key].count}}</span>
+          <button (click)="add(key)" class="cart__icon cart__icon--compute"> <i class="fa fa-plus"></i></button>
+          <span class="cart__icon"> <i class="fa fa-times"></i></span>
+          <span class="cart__icon">{{cartItems[key].price}}</span>
+          <span class="btn btn--close">Rs {{cartItems[key].count * cartItems[key].price}}</span>
         </div>
       </div>
     </div>
-    <div class="checkout-container">
-      <button class="checkout-btn">
+
+    <div class="cart__label">
+      <img class="cart__img" src="assets/static/images/lowest-price.png">
+      <span>You won't find it cheaper anywhere</span>
+    </div>
+
+    <div class="cart__checkout">
+      <div>Promo code can be applied on payment page</div>
+      <button class="btn btn--checkout">
         <span>Proceed to Checkout</span>
-        <span class="cart-total">Rs {{total}}</span>
+        <span class="cart__total">Rs {{totalCartPrice}}</span>
       </button>
     </div>
   </ng-container>

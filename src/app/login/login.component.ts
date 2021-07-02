@@ -6,7 +6,7 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   form;
@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      email: new FormControl('', [Validators.email]),
+      password: new FormControl('', [Validators.minLength(6)])
     });
   }
 
